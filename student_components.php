@@ -34,7 +34,47 @@
 </div>
 
 <!-- People -->
-
+<div class="accordion" id="accordionExample">
+    <div id="people" class="container-fluid p-5">
+        <h1 class="text-dark">People</h1>
+        <!--buttons-->
+        <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <h3>Students</button>
+        </button>
+    
+    
+        <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <h3>Groups</button>
+        </button>
+        <div class="card">
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <h7>Student Name</h7>
+            </div>
+        </div>
+        <div class="card">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-light btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h7>Group1</h7>
+                                </button>
+                            </h2>
+                        </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapseTwo">
+                            <div class="card-body">
+                                <p>Student1</p>
+                                <p>Student2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
 
 <!-- Grades -->
 <div id="grades" class="container-fluid p-5">

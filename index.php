@@ -35,8 +35,8 @@
                     <input type="text" name="ID" placeholder="Password" class="horizontal-center">
                     <div class="container horizontal-center">
                         <br>
-                            <a href="courses.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:left;">Register</a>
-                            <a href="courses.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:right;">Log In</a>
+                            <a href="teacher_courses.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:left;">Register</a>
+                            <a href="student_courses.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:right;">Log In</a>
                     </div>
                 </div>
             </div>

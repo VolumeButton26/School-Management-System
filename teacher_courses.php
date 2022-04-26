@@ -15,14 +15,14 @@
             <div class="bg-secondary text-center text-white">
                 <img src="images/avatarSample.png" class="mt-5 avatar" alt="avatar">
                 <h2 class="my-3">NAME</h2>
-                <a href="#" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
+                <a href="index.php" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
             </div>
             <div class="p-3"> 
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item"><a href="#" class="nav-link active">Courses</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Calendar</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
+                        <li class="nav-item"><a href="settings.php" class="nav-link">Settings</a></li>
                     </ul>
                 </nav>
             </div>
@@ -45,6 +45,9 @@
                             <a class="card-link text-light" href="#">Biochemistry</a>
                             <hr/>
                             <a class="card-link text-light" href="#">Anthropology</a>
+                            <hr/>
+                            <button type="" class="btn btn-dark">Add</button>
+                            <button type="" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -54,20 +57,21 @@
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item"><a href="#" class="nav-link">Announcements</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Modules</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link active">People</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Grades</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">People</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Grading System</a></li>
                     </ul>
                 </nav>
             </div>
         </div>
 
         <!-- Content -->
-        <main>
+        <main id="content">
             <div class="accordion" id="accordionExample">
                 <div id="people" class="container-fluid p-5">
                     <h1 class="text-dark">People</h1>
                     <!--buttons-->
                     <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    
                     <h3>Students</button>
                     </button>
                 
@@ -78,12 +82,19 @@
                     <div class="card">
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
-                           <h7>Student Name</h7>
+                            <input type="text">
+                            <button type="" class="btn btn-dark">Add Student</button>
+                            <button type="" class="btn btn-danger">Delete Student</button>
+                            <h6>Student Name</h6>
                         </div>
                     </div>
                     <div class="card">
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
+                                <button type="" class="btn btn-dark">Add Group</button>
+                                <button type="" class="btn btn-dark">Edit Group</button>
+                                <button type="" class="btn btn-danger">Delete Group</button>
+
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
                                         <h2 class="mb-0">
@@ -99,6 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

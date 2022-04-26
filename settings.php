@@ -20,7 +20,7 @@
             <div class="p-3"> 
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="courses.php" class="nav-link">Courses</a></li>
+                        <li class="nav-item"><a href="teacher_courses.php" class="nav-link">Courses</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Calendar</a></li>
                         <li class="nav-item"><a href="#" class="nav-link active">Settings</a></li>
                     </ul>
