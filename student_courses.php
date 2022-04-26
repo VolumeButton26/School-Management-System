@@ -21,7 +21,7 @@
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item"><a href="#" class="nav-link active">Courses</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Calendar</a></li>
+                        <li class="nav-item"><a href="calendar.php" class="nav-link">Calendar</a></li>
                         <li class="nav-item"><a href="settings.php" class="nav-link">Settings</a></li>
                     </ul>
                 </nav>
