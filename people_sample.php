@@ -63,7 +63,7 @@
 
         <!-- Content -->
         <main>
-            <div id="modules" class="container-fluid p-5">
+            <div id="people" class="container-fluid p-5">
                 <h1 class="text-dark">Announcements</h1>
                 <hr>
                 <h5>Teacher Name<span>Date and Time</span></h5>
