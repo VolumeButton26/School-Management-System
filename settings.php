@@ -40,7 +40,7 @@
                     
                         <label for="old-password">Old password</label>
                         <div class="col-sm-2 p-0">
-                            <input type="password" class="form-control" id="old-password" size="10" required>
+                            <input type="password" class="form-control" id="old-password" required>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
