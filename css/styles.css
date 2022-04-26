@@ -28,3 +28,28 @@ main {
     width: 10px;
     height: 13px;
 }
+
+.center{
+    width: 400px;
+    height: 430px;
+
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) 
+}
+
+.horizontal-text-center{
+    text-align: center;
+}
+
+.horizontal-center{
+    width: 100%;
+    margin: 0 auto;
+}
+
+a{ color: white; }
+a:hover, a:active, a:visited {color:rgba(255, 255, 255, 0.5);}
+
