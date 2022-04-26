@@ -1,0 +1,30 @@
+.main-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+}
+
+.sub-sidebar {
+    position: fixed;
+    top: 0;
+    left: 240px;
+    width: 240px;
+    height: 100vh;
+}
+
+main {
+    margin-left: 480px;
+}
+
+.avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+.collapse-icon {
+    width: 10px;
+    height: 13px;
+}
