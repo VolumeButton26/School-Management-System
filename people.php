@@ -85,25 +85,25 @@
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="card">
-                                        <div class="card-header" id="headingThree">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link btn-light btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <h7>Group1</h7>
-                                                </button>
-                                            </h2>
+                                    <div class="card-header" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button class="btn btn-link btn-light btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <h7>Group1</h7>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapseTwo">
+                                        <div class="card-body">
+                                            <p>Student1</p>
+                                            <p>Student2</p>
                                         </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapseTwo">
-                                            <div class="card-body">
-                                                <p>Student1</p>
-                                                <p>Student2</p>
-                                            </div>
-                                        </div>
-                                        
+                                    </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>    
-            </div>    
+            </div>
         </main>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
