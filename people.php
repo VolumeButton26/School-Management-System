@@ -92,11 +92,11 @@
                                                 </button>
                                             </h2>
                                         </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapseTwo">
-                                        <div class="card-body">
-                                            <p>Student1</p>
-                                            <p>Student2</p>
-                                        </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapseTwo">
+                                            <div class="card-body">
+                                                <p>Student1</p>
+                                                <p>Student2</p>
+                                            </div>
                                         </div>
                                         
                                 </div>
