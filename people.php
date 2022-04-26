@@ -63,31 +63,47 @@
 
         <!-- Content -->
         <main>
-            <div id="people" class="container-fluid p-5">
-                <h1 class="text-dark">People</h1>
-                <!--navbar-->
-                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                    <!--navbar links-->
-                    <ul class="navbar-nav" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active"  id="students-tab" data-toggle="tab" href="#students" role="tab" aria-controls="students" aria-selected="true">Students</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"  id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
-                        </li>
-                    </ul>
-                </nav>    
-            </div>
-
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="students-tab">
-                    <hr>
-                    <p class="text-md-left">Student Name</p>
-                </div>
-                <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
-                    <p class="text-md-left">Groups</p>
-                </div>
-            </div>
+            <div class="accordion" id="accordionExample">
+                <div id="people" class="container-fluid p-5">
+                    <h1 class="text-dark">People</h1>
+                    <!--buttons-->
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h3>Students</button>
+                    </button>
+                
+                
+                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <h3>Groups</button>
+                    </button>
+                    <div class="card">
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                           <h7>Student Name</h7>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="card">
+                                        <div class="card-header" id="headingThree">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link btn-light btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                <h7>Group1</h7>
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#collapseTwo">
+                                        <div class="card-body">
+                                            <p>Student1</p>
+                                            <p>Student2</p>
+                                        </div>
+                                        </div>
+                                        
+                                </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>    
         </main>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
