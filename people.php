@@ -52,9 +52,9 @@
             <div class="px-1 pb-1"> 
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="#" class="nav-link active">Announcements</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Announcements</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Modules</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">People</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link active">People</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Grades</a></li>
                     </ul>
                 </nav>
@@ -64,10 +64,29 @@
         <!-- Content -->
         <main>
             <div id="people" class="container-fluid p-5">
-                <h1 class="text-dark">Announcements</h1>
-                <hr>
-                <h5>Teacher Name<span>Date and Time</span></h5>
-                <p>We will not be meeting tomorrow yehey</p>
+                <h1 class="text-dark">People</h1>
+                <!--navbar-->
+                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                    <!--navbar links-->
+                    <ul class="navbar-nav" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active"  id="students-tab" data-toggle="tab" href="#students" role="tab" aria-controls="students" aria-selected="true">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"  id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Groups</a>
+                        </li>
+                    </ul>
+                </nav>    
+            </div>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="students" role="tabpanel" aria-labelledby="students-tab">
+                    <hr>
+                    <p class="text-md-left">Student Name</p>
+                </div>
+                <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+                    <p class="text-md-left">Groups</p>
+                </div>
             </div>
         </main>
 
