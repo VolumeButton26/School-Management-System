@@ -13,7 +13,7 @@
         <!-- Main Sidebar -->
         <div class="bg-dark main-sidebar">
             <div class="bg-secondary text-center text-white">
-                <img src="images/avatarSample.png" class="mt-5 avatar" alt="avatar">
+                <img src="images/avatarSample.png" class="mt-5 rounded-circle" alt="avatar">
                 <h2 class="my-3">NAME</h2>
                 <a href="index.php" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
             </div>
@@ -34,9 +34,7 @@
                 <!-- php script -->
                 <div class="card">
                     <div class="card-header bg-dark">
-                        <a class="card-link text-light collapse-link" data-toggle="collapse" href="#courseDropdownMenu">
-                        Advanced Physics
-                        </a>
+                        <a class="card-link text-light" data-toggle="collapse" href="#courseDropdownMenu">Advanced Physics</a>
                     </div>
                     <div id="courseDropdownMenu" class="collapse">
                         <div class="card-body bg-secondary">
@@ -52,10 +50,10 @@
             <div class="px-1 pb-1"> 
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="#" class="nav-link">Announcements</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Modules</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">People</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Grades</a></li>
+                        <li class="nav-item"><button value="announcements" type="button" class="nav-link btn btn-link" id="announcements-button">Announcements</button></li>
+                        <li class="nav-item"><button value="modules" type="button" class="nav-link btn btn-link" id="modules-button">Modules</button></li>
+                        <li class="nav-item"><button value="people" type="button" class="nav-link btn btn-link" id="people-button">People</button></li>
+                        <li class="nav-item"><button value="grades" type="button" class="nav-link btn btn-link" id="grades-button">Grades</button></li>
                     </ul>
                 </nav>
             </div>
@@ -63,104 +61,16 @@
 
         <!-- Content -->
         <main id="content">
-            <div id="grades" class="container-fluid p-5">
-                <h1 class="text-dark">Grades</h1>
+            <div id="announcements" class="container-fluid p-5">
+                <h1 class="text-dark">Announcements</h1>
+                
+                <hr>
+                <h5>Teacher Name <small>Date Time</small></h5>
+                <p>We will not be meeting tomorrow yehey</p>
 
                 <hr>
-                <h3>Assignments</h3>
-                <table class="table table-sm">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width:40%">Module</th>
-                            <th style="width:20%">Due</th>
-                            <th style="width:20%">Status</th>
-                            <th style="width:10%">Score</th>
-                            <th style="width:10%">Out Of</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1.1</td>
-                            <td>Apr 30, 2022 by 11:59 PM</td>
-                            <td>Submitted</td>
-                            <td>50</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>1.2</td>
-                            <td>Apr 27, 2022 by 11:59 PM</td>
-                            <td>Late</td>
-                            <td>40</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>1.3</td>
-                            <td>Apr 27, 2022 by 11:59 PM</td>
-                            <td>Not Submitted</td>
-                            <td>0</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <th colspan="3">Total</th>
-                            <td>90</td>
-                            <td>150</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <hr>
-                <h3>Quizzes</h3>
-                <table class="table table-sm">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width:40%">Module</th>
-                            <th style="width:20%">Due</th>
-                            <th style="width:20%">Status</th>
-                            <th style="width:10%">Score</th>
-                            <th style="width:10%">Out Of</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1.4</td>
-                            <td>May 2, 2022 by 11:59 PM</td>
-                            <td>Submitted</td>
-                            <td>50</td>
-                            <td>50</td>
-                        </tr>
-
-                        <tr>
-                            <th colspan="3">Total</th>
-                            <td>50</td>
-                            <td>50</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <hr>
-                <h3>Additional</h3>
-                <table class="table table-sm">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th style="width:80%">Name</th>
-                            <th style="width:10%">Score</th>
-                            <th style="width:10%">Out Of</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Name</td>
-                            <td>50</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <th>Total</th>
-                            <td>50</td>
-                            <td>50</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h5>Teacher Name <small>Date Time</small></h5>
+                <p>We will be meeting tomorrow! yehey</p>
             </div>
         </main>
 
@@ -168,6 +78,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
     
-        <script src="scripts/scripts.js"></script>
+        <script src="js_scripts/courses.js"></script>
+
     </body>
 </html>
