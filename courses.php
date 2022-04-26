@@ -65,9 +65,14 @@
         <main>
             <div id="modules" class="container-fluid p-5">
                 <h1 class="text-dark">Announcements</h1>
+                
                 <hr>
                 <h5>Teacher Name<span>Date and Time</span></h5>
                 <p>We will not be meeting tomorrow yehey</p>
+
+                <hr>
+                <h5>Teacher Name<span>Date and Time</span></h5>
+                <p>We will be meeting tomorrow! yehey</p>
             </div>
         </main>
 
