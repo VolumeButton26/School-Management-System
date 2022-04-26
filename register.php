@@ -22,22 +22,33 @@
         }
     </style>
     <body>
-        <div class="card center canvas-green text-white">
+        <div class="card center-register canvas-green text-white">
             <div class="container">
               
                 <h1 class="horizontal-text-center display-1"><strong>USLS</strong></h1>
               
-                <h4 class="horizontal-text-center display-4"><strong>LOGIN</strong></h4>
+                <h4 class="horizontal-text-center display-4"><strong>REGISTER</strong></h4>
                 <div class="container horizontal-center">
                     <br><br><br>
                     <input type="text" name="ID" placeholder="Enter Student/Faculty ID" class="horizontal-center">
                     <br><br>
                     <input type="password" name="ID" placeholder="Password" class="horizontal-center">
-                    <div class="container horizontal-center">
+                    <br><br>
+                    <input type="password" name="ID" placeholder="Confirm Password" class="horizontal-center">           
+                    <div class="dropdown">
                         <br>
-                            <a href="register.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:left;">Register</a>
-                            <a href="student_courses.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:right;">Log In</a>
-                            <a href="teacher_courses.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:right;">Log In(teacher)</a>
+                        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Choose your Role
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Student</a>
+                            <a class="dropdown-item" href="#">Teacher</a>
+                        </div>
+                     </div>        
+                                            <div class="container horizontal-center">
+                        <br>
+                            <a href="index.php" class="btn mx-auto mb-4 text-white btn-outline-light a-white" style="float:left;">Cancel</a>
+                            <a href="index.php" class="btn mx-auto mb-4 text-white btn-outline-light a-white" style="float:right;">Confirm</a>
                     </div>
                 </div>
             </div>

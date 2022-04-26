@@ -50,6 +50,17 @@ main {
     margin: 0 auto;
 }
 
-a{ color: white; }
-a:hover, a:active, a:visited {color:rgba(255, 255, 255, 0.5);}
+.a-white{ color:white;}
+a:hover{color:rgba(255, 255, 255, 0.5);}
 
+.center-register{
+    width: 400px;
+    height: 550px;
+
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%) 
+}
