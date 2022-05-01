@@ -23,38 +23,11 @@ main {
     height: 13px;
 }
 
-.center{
+.index-card {
     width: 400px;
-    height: 430px;
-
-    margin: 0;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) 
+    height: auto;
 }
 
-.horizontal-text-center{
-    text-align: center;
-}
-
-.horizontal-center{
-    width: 100%;
-    margin: 0 auto;
-}
-
-.a-white{ color:white;}
-a:hover{color:rgba(255, 255, 255, 0.5);}
-
-.center-register{
-    width: 400px;
-    height: 550px;
-
-    margin: 0;
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%) 
+index-link:hover {
+    color:rgba(255, 255, 255, 0.5);
 }

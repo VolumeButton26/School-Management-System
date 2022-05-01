@@ -7,41 +7,21 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">    
         <link rel="stylesheet" href="css/styles.css">
-
-        <style type="text/css">
-            body { 
-                background-image:url("images/canvas_bg.gif");
-                background-color: #cccccc;
-                background-attachment: fixed;
-                background-position: center;
-                background-clip: padding-box;
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-            }
-            .canvas-green {
-                background:#04592a;
-            }
-        </style>
     </head>
         
-    <body>
-        <div class="card center canvas-green text-white">
-            <div class="container">
-                <h1 class="horizontal-text-center display-1"><strong>USLS</strong></h1>
-                <h4 class="horizontal-text-center display-4"><strong>LOGIN</strong></h4>
+    <body class="bg-secondary">
+        <div class="card text-white bg-dark shadow index-card mx-auto mt-5">
+            <div class="card-body px-5 pb-5">  
+                <h1 class="text-center display-3"><strong>CANVAS RIPOFF</strong></h1>
 
-                <div class="container horizontal-center">
-                    <br><br><br>
-                    <input type="text" name="ID" placeholder="Enter Student/Faculty ID" class="horizontal-center">
-                    <br><br>
-                    <input type="password" name="ID" placeholder="Password" class="horizontal-center">
-                    <div class="container horizontal-center">
-                        <br>
-                        <a href="register.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:left;">Register</a>
-                        <a href="courses/student/student_announcements.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:right;">Log In</a>
-                        <a href="courses/teacher/teacher_announcements.php" class="btn mx-auto mb-4 text-white btn-outline-light" style="float:right;">Log In(TEACHER)</a>
-                    </div>
-                </div>
+                <label for="ID">Student/Faculty ID</label>
+                <input type="text" name="ID" class="form-control mb-2">
+                <label for="ID">Password</label>
+                <input type="password" name="Password" class="form-control mb-4">
+
+                <a href="register.php" class="btn btn-outline-light mx-auto text-white float-left index-link">Register</a>
+                <a href="courses/student/student_announcements.php" class="btn btn-outline-light mx-auto text-white float-right index-link">Log In</a>
+                <a href="courses/teacher/teacher_announcements.php" class="btn btn-outline-light mx-auto text-white float-right index-link">Log In(TEACHER)</a>
             </div>
         </div>
 
