@@ -1,6 +1,8 @@
 <?php
     include('../../php_scripts/connect.php');
     session_start();
+
+    $id = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,8 +51,8 @@
                             <hr>
                             <a href="#" class="card-link text-light">Anthropology</a>
                             <hr>
-                            <button type="" class="btn btn-dark">Add</button>
-                            <button type="" class="btn btn-danger">Delete</button>
+                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#add-course-modal">Add</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -64,6 +66,30 @@
                         <li class="nav-item"><a href="teacher_grading_system.php" class="nav-link">Grading System</a></li>
                     </ul>
                 </nav>
+            </div>
+        </div>
+
+        <div class="modal fade" id="add-course-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Course</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <form action="../../php_scripts/courses_scripts/add_course.php" method="post">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="course-name">Course Name</label>
+                                <input type="text" name="course-name" class="form-control mb-2" required>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" name="add-course" value="add-course" class="btn btn-dark" id="add-course">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 

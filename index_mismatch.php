@@ -16,7 +16,7 @@
 
                 <form action="php_scripts/login_user.php" method="post">
                     <div class="form-group">
-                        <label for="ud">Student/Faculty ID</label>
+                        <label for="ud">Student/Teacher ID</label>
                         <input type="text" name="id" class="form-control mb-2" required>
                     </div>
                     <div class="form-group">

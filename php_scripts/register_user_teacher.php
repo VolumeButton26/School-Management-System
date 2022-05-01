@@ -3,7 +3,7 @@
 
     $id = $_POST['id'];
     $password = $_POST['password'];
-    $role = "Student";
+    $role = "Teacher";
     $family_name = $_POST['family-name'];
     $first_name = $_POST['first-name'];
     $middle_name = $_POST['middle-name'];

@@ -19,7 +19,8 @@
                 <form action="php_scripts/register_user_student.php" method="post">
                     <div class="form-group">
                         <label for="ID">Student ID</label>
-                        <input type="text" name="id" class="form-control mb-2" required>
+                        <input type="text" name="id" class="form-control mb-2" onkeyup="showAvailability(this.value)" required>
+                        <p id="id-availability-message" class="text-danger"></p>
                     </div>
                     <div class="form-group">
                         <label for="ID">Password</label>
@@ -74,7 +75,7 @@
 
                     <div class="form-group">
                         <a href="index.php" class="btn btn-outline-light text-white float-left">Cancel</a>
-                        <button type="submit" name="register" value="Register" class="btn btn-outline-light float-right" id="register" disabled>Confirm</button>
+                        <button type="submit" name="register" value="Register" class="btn btn-outline-light float-right" id="submit" disabled>Confirm</button>
                     </div>
                 </form>
             </div>
@@ -84,24 +85,6 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
     
-        <script>
-            function validatePasswordMatch() {
-                var passOne = document.getElementById("password");
-                var passTwo = document.getElementById("confirm-password");
-                var msg = document.getElementById('password-validation-message');
-                var register = document.getElementById('register');
-
-                if (passOne.value == passTwo.value) {
-                    msg.className = "text-success";
-                    msg.innerHTML = "Passwords match.";
-                    register.disabled = false;
-                }
-                else {
-                    msg.className = "text-danger";
-                    msg.innerHTML = "Passwords do not match.";
-                    register.disabled = true;
-                }
-            }
-        </script>
+        <script src="js_scripts/register_checks.js"></script>
     </body>
 </html>

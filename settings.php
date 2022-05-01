@@ -41,30 +41,27 @@
 
                 <hr>
                 <h3>Change password:</h3>
-                <form action="" class="was-validated">
+                <form action="php_scripts/change_password.php" method="post">
                     <div class="form-group">
-                    
                         <label for="old-password">Old password</label>
                         <div class="col-sm-2 p-0">
-                            <input type="password" class="form-control" id="old-password" required>
-                            <div class="invalid-feedback">Please fill out this field.</div>
+                            <input type="password" name="old-password" class="form-control" id="old-password" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="new-password">New password</label>
                         <div class="col-sm-2 p-0">
-                            <input type="password" class="form-control" id="new-password" required>
-                            <div class="invalid-feedback">Please fill out this field.</div>
+                            <input type="password" name="password" class="form-control" id="password" onkeyup="validatePasswordMatch()" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="confirm-new-password">Confirm New password</label>
                         <div class="col-sm-2 p-0">
-                            <input type="password" class="form-control" id="confirm-new-password" required>
-                            <div class="invalid-feedback">Please fill out this field.</div>
+                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" onkeyup="validatePasswordMatch()" required>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-dark">Update Password</button>
+                    <p id="password-validation-message"></p>
+                    <button type="submit" name="update" value="Update" id="submit" class="btn btn-dark" disabled>Update</button>
                 </form>
             </div>
         </main>
@@ -72,5 +69,7 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    
+        <script src="js_scripts/register_checks.js"></script>
     </body>
 </html>
