@@ -7,17 +7,28 @@
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">    
         <link rel="stylesheet" href="css/styles.css">
-
-        
     </head>
-    
+        
     <body class="bg-secondary">
         <div class="card text-white bg-dark shadow index-card mx-auto mt-5">
-            <div class="card-body px-5 pb-4">
-                <h1 class="text-center display-4"><strong>REGISTER</strong></h1>
-                <p class="text-center">Are you a student or teacher?</p>
-                <a href="register_student.php" class="btn btn-outline-light float-left">Student</a>
-                <a href="register_teacher.php" class="btn btn-outline-light float-right">Teacher</a>
+            <div class="card-body px-5 pb-5">  
+                <h1 class="text-center display-3"><strong>CANVAS RIPOFF</strong></h1>
+
+                <form action="php_scripts/login_user.php" method="post">
+                    <div class="form-group">
+                        <label for="ud">Student/Faculty ID</label>
+                        <input type="text" name="id" class="form-control mb-2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control mb-4" required>
+                    </div>
+                    <p class="text-danger">ID or password do not match.</p>
+                    <div class="form-group">
+                        <a href="register.php" class="btn btn-outline-light float-left">Register</a>
+                        <button type="submit" name="login" value="Login" class="btn btn-outline-light float-right" id="login">Log In</button>
+                    </div>
+                </form>
             </div>
         </div>
 

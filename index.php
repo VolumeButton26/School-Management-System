@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    session_unset();
+    session_destroy();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,14 +19,20 @@
             <div class="card-body px-5 pb-5">  
                 <h1 class="text-center display-3"><strong>CANVAS RIPOFF</strong></h1>
 
-                <label for="ID">Student/Faculty ID</label>
-                <input type="text" name="ID" class="form-control mb-2">
-                <label for="ID">Password</label>
-                <input type="password" name="Password" class="form-control mb-4">
-
-                <a href="register.php" class="btn btn-outline-light mx-auto text-white float-left index-link">Register</a>
-                <a href="courses/student/student_announcements.php" class="btn btn-outline-light mx-auto text-white float-right index-link">Log In</a>
-                <a href="courses/teacher/teacher_announcements.php" class="btn btn-outline-light mx-auto text-white float-right index-link">Log In(TEACHER)</a>
+                <form action="php_scripts/login_user.php" method="post">
+                    <div class="form-group">
+                        <label for="ud">Student/Teacher ID</label>
+                        <input type="text" name="id" class="form-control mb-2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control mb-4" required>
+                    </div>
+                    <div class="form-group">
+                        <a href="register.php" class="btn btn-outline-light float-left">Register</a>
+                        <button type="submit" name="login" value="Login" class="btn btn-outline-light float-right" id="login">Log In</button>
+                    </div>
+                </form>
             </div>
         </div>
 

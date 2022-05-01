@@ -14,7 +14,7 @@
         <div class="bg-dark main-sidebar">
             <div class="bg-secondary text-center text-white">
                 <img src="../../images/avatarSample.png" class="mt-5 rounded-circle" alt="avatar">
-                <h2 class="my-3">NAME</h2>
+                <h3 class="my-3">NAME</h3>
                 <a href="../../index.php" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
             </div>
             <div class="p-3"> 
