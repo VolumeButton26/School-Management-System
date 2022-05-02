@@ -4,6 +4,8 @@
 
     $id = $_SESSION['id'];
     $name = $_POST['course-name'];
+    $assignments = $_POST['assignments-distribution'];
+    $quizzes = $_POST['quizzes-distribution'];
     $course_num;
 
     if (isset($_POST['add-course'])) {
@@ -16,6 +18,7 @@
         }
 
         sql("INSERT INTO assigned_courses VALUES ('$id', '$course_num')");
+        sql("INSERT INTO grading_system_main VALUES ('$course_num', $assignments, $quizzes)");
     }
 
     if(isset($_REQUEST["destination"])){
@@ -23,6 +26,6 @@
     }else if(isset($_SERVER["HTTP_REFERER"])){
         header("Location: {$_SERVER["HTTP_REFERER"]}");
     }else{
-        header("Location: settings.php");
+        header("Location: ../../courses/teacher/teacher_announcements.php");
     }
 ?>

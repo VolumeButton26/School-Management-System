@@ -17,81 +17,10 @@
     
     <body>
         <!-- Main Sidebar -->
-        <div class="bg-dark main-sidebar">
-            <div class="bg-secondary text-center text-white">
-                <img src="../../images/avatarSample.png" class="mt-5 rounded-circle" alt="avatar">
-                <h3 class="my-3"><?php echo $_SESSION['first_name'] . " " . $_SESSION['family_name']?></h3>
-                <a href="../../index.php" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
-            </div>
-            <div class="p-3"> 
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="student_announcements.php" class="nav-link active">Courses</a></li>
-                        <li class="nav-item"><a href="../../calendar.php" class="nav-link">Calendar</a></li>
-                        <li class="nav-item"><a href="../../settings.php" class="nav-link">Settings</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php include('../../main_sidebar.php'); ?>
 
         <!-- Courses Sub Sidebar -->
-        <div class="bg-white border-right sub-sidebar">
-            <div class="container pt-3 px-4">
-                <!-- php script -->
-                <h3 class="text-dark">Courses</h3>
-                <div class="card">
-                    <div class="card-header bg-dark">
-                        <a class="card-link text-light" data-toggle="collapse" href="#courseDropdownMenu">Advanced Physics</a>
-                    </div>
-                    <div id="courseDropdownMenu" class="collapse">
-                        <div class="card-body bg-secondary">
-                            <a href="#" class="card-link text-light">Inverse Kinematics</a>
-                            <hr>
-                            <a href="#" class="card-link text-light">Biochemistry</a>
-                            <hr>
-                            <a href="#" class="card-link text-light">Anthropology</a>
-                            <hr>
-                            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#add-course-modal">Add</button>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="px-1 pb-1"> 
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="teacher_announcements.php" class="nav-link">Announcements</a></li>
-                        <li class="nav-item"><a href="teacher_modules.php" class="nav-link">Modules</a></li>
-                        <li class="nav-item"><a href="teacher_people.php" class="nav-link">People</a></li>
-                        <li class="nav-item"><a href="teacher_grading_system.php" class="nav-link">Grading System</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-        <div class="modal fade" id="add-course-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Course</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <form action="../../php_scripts/courses_scripts/add_course.php" method="post">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="course-name">Course Name</label>
-                                <input type="text" name="course-name" class="form-control mb-2" required>
-                            </div>
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" name="add-course" value="add-course" class="btn btn-dark" id="add-course">Submit</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <?php include('../courses_sub_sidebar_teacher.php'); ?>
 
         <!-- Content -->
         <main>
@@ -108,28 +37,35 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
-                            <div class="modal-body">
+                            <form action="../../php_scripts/courses_scripts/add_announcement.php" method="post">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <textarea name="announcement-content" value="announcement-content" class="form-control" rows="5" id="announcement-content"></textarea>
+                                    </div>
+                                </div>
 
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Submit</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="add-announcement" value="add-announcement" class="btn btn-dark" id="add-announcement">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
 
 
                 <div id="content">
-                    <!-- get content from database -->
-                    
-                    <h5>Teacher Name <small>Date Time</small></h5>
-                    <p>We will not be meeting tomorrow yehey</p>
-                    <hr>
-
-                    <h5>Teacher Name <small>Date Time</small></h5>
-                    <p>We will be meeting tomorrow! yehey</p>
-                    <hr>
+                    <?php
+                        $course_number = $_SESSION["selected_course_number"];
+                        $announcements = sql("SELECT Date_posted, Announcement_content FROM announcements WHERE Course_number = $course_number ORDER BY Date_posted DESC");
+                        
+                        if ($announcements->num_rows > 0) {
+                            while ($row = $announcements->fetch_assoc()) {
+                                echo "<h5>" . $_SESSION['first_name'] . " " . $_SESSION['family_name'] . "<small> " . $row["Date_posted"] . "</small></h5>";
+                                echo "<p>" . $row["Announcement_content"] . "</p>";
+                                echo "<hr>";
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </main>
