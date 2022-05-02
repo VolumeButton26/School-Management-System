@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Canvas Ripoff</title>
+        <title>Port</title>
         
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">    
         <link rel="stylesheet" href="css/styles.css">
@@ -12,7 +12,7 @@
     <body class="bg-secondary">
         <div class="card text-white bg-dark shadow index-card mx-auto mt-5">
             <div class="card-body px-5 pb-5">  
-                <h1 class="text-center display-3"><strong>CANVAS RIPOFF</strong></h1>
+                <h1 class="text-center display-3"><strong>PORT</strong></h1>
 
                 <form action="php_scripts/login_user.php" method="post">
                     <div class="form-group">
