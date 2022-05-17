@@ -55,7 +55,7 @@
                 <li class="nav-item"><a href="student_announcements.php?course=<?php echo $courses_sb_selected_number?>" class="nav-link<?php if ($courses_sb_selected_number == null) { echo " disabled"; }?>">Announcements</a></li>
                 <li class="nav-item"><a href="student_modules.php?course=<?php echo $courses_sb_selected_number?>" class="nav-link<?php if ($courses_sb_selected_number == null) { echo " disabled"; }?>">Modules</a></li>
                 <li class="nav-item"><a href="student_people.php?course=<?php echo $courses_sb_selected_number?>" class="nav-link<?php if ($courses_sb_selected_number == null) { echo " disabled"; }?>">People</a></li>
-                <li class="nav-item"><a href="student_grades.php?course=<?php echo $courses_sb_selected_number?>" class="nav-link<?php if ($courses_sb_selected_number == null) { echo " disabled"; }?>">Grading System</a></li>
+                <li class="nav-item"><a href="student_grades.php?course=<?php echo $courses_sb_selected_number?>" class="nav-link<?php if ($courses_sb_selected_number == null) { echo " disabled"; }?>">Grades</a></li>
             </ul>
         </nav>
     </div>

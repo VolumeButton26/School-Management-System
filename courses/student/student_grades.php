@@ -29,8 +29,8 @@
 
         <!-- Content -->
         <main>
-            <div id="announcements" class="container-fluid p-5">
-                <h1 class="text-dark">Announcements</h1>
+            <div id="grades" class="container-fluid p-5">
+                <h1 class="text-dark">Grades</h1>
                 <hr/>
 
                 <div id="content">

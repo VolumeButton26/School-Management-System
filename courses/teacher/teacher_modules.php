@@ -44,13 +44,22 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
 
-                            <div class="modal-body">
+                            <form method="post" action="">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="group-name">Group Name</label>
+                                        <input type="text" name="group-name" class="form-control mb-2" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="num_groups">Number of Groups</label>
+                                        <input type="number" name="num-groups" class="form-control mb-2" value="1" required>
+                                    </div>
+                                </div>
 
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-dismiss="modal">Submit</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="add-module-button" value="Submit" class="btn btn-dark">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
