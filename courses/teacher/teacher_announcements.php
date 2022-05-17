@@ -2,7 +2,12 @@
     include('../../php_scripts/connect.php');
     session_start();
 
-    $id = $_SESSION['id'];
+    if (isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
+    else {
+        header("Location: ../../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +22,7 @@
     
     <body>
         <!-- Main Sidebar -->
-        <?php include('../../main_sidebar.php'); ?>
+        <?php include('../courses_main_sidebar.php'); ?>
 
         <!-- Courses Sub Sidebar -->
         <?php include('../courses_sub_sidebar_teacher.php'); ?>
@@ -25,37 +30,45 @@
         <!-- Content -->
         <main>
             <div id="announcements" class="container-fluid p-5">
-                <h1 class="text-dark">Announcements</h1>
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#announcement-modal">Add Announcement</button>
-                <hr>
+                <?php
+                    if (!isset($_GET['course'])) {
+                        echo "<h1 class=\"text-dark\">Select Course</h1>";
+                    }
+                    else {
+                        echo "
+                            <h1 class=\"text-dark\">Announcements</h1>
+                            <button type=\"button\" class=\"btn btn-dark\" data-toggle=\"modal\" data-target=\"#announcement-modal\">Add Announcement</button>
+                            <hr>
 
-                <div class="modal fade" id="announcement-modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Add Announcement</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
+                            <div class=\"modal fade\" id=\"announcement-modal\">
+                                <div class=\"modal-dialog\">
+                                    <div class=\"modal-content\">
+                                        <div class=\"modal-header\">
+                                            <h4 class=\"modal-title\">Add Announcement</h4>
+                                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
+                                        </div>
 
-                            <form action="../../php_scripts/courses_scripts/add_announcement.php" method="post">
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <textarea name="announcement-content" value="announcement-content" class="form-control" rows="5" id="announcement-content"></textarea>
+                                        <form action=\"../../php_scripts/courses_scripts/add_announcement.php\" method=\"post\">
+                                            <input type=\"hidden\" id=\"course-number\" name=\"course-number\" value=\"" . $_GET['course'] . "\">
+                                            <div class=\"modal-body\">
+                                                <div class=\"form-group\">
+                                                    <textarea name=\"announcement-content\" value=\"announcement-content\" class=\"form-control\" rows=\"5\" id=\"announcement-content\"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class=\"modal-footer\">
+                                                <button type=\"submit\" name=\"add-announcement\" value=\"add-announcement\" class=\"btn btn-dark\" id=\"add-announcement\">Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="modal-footer">
-                                    <button type="submit" name="add-announcement" value="add-announcement" class="btn btn-dark" id="add-announcement">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                            <div id=\"content\">
+                        ";
 
-
-                <div id="content">
-                    <?php
-                        $course_number = $_SESSION["selected_course_number"];
+                        // $course_number = $_SESSION["selected_course_number"];
+                        $course_number = $_GET['course'];
                         $announcements = sql("SELECT Date_posted, Announcement_content FROM announcements WHERE Course_number = $course_number ORDER BY Date_posted DESC");
                         
                         if ($announcements->num_rows > 0) {
@@ -65,8 +78,9 @@
                                 echo "<hr>";
                             }
                         }
-                    ?>
-                </div>
+                        echo "</div>";
+                    }
+                ?>
             </div>
         </main>
 

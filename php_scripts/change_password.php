@@ -13,15 +13,13 @@
         $result = sql($search);
 
         if ($result->num_rows == 1) {
-            while ($row = $result->fetch_assoc()) {
+            $row = $result->fetch_assoc();
+            if ($old_password == $row["Password"]) {
                 $update = "UPDATE login_information
                            SET Password = '$password'
                            WHERE ID_number = '$id'";
                 sql($update);
             }
-        }
-        else {
-            // wrong pass
         }
     }
 

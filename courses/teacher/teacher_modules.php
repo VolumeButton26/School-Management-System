@@ -2,7 +2,12 @@
     include('../../php_scripts/connect.php');
     session_start();
 
-    $id = $_SESSION['id'];
+    if (isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
+    else {
+        header("Location: ../../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +22,7 @@
     
     <body>
         <!-- Main Sidebar -->
-        <?php include('../../main_sidebar.php'); ?>
+        <?php include('../courses_main_sidebar.php'); ?>
 
         <!-- Courses Sub Sidebar -->
         <?php include('../courses_sub_sidebar_teacher.php'); ?>

@@ -4,16 +4,15 @@
 
     $id = $_SESSION['id'];
     $name = $_POST['course-name'];
-    $course_num;
+    $course_num = null;
 
     if (isset($_POST['delete-course'])) {
         $recent = sql("SELECT Course_number FROM courses WHERE Course_name = '$name'");
         if ($recent->num_rows == 1) {
-            while ($row = $recent->fetch_assoc()) {
-                $course_num = $row["Course_number"];
-            }
+            $row = $recent->fetch_assoc();
+            $course_num = $row["Course_number"];
+            sql("DELETE FROM assigned_courses WHERE Course_number = $course_num");
         }
-        sql("DELETE FROM assigned_courses WHERE Course_number = $course_num");
     }
 
     if(isset($_REQUEST["destination"])){

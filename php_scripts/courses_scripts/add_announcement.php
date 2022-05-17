@@ -2,7 +2,7 @@
     include('../connect.php');
     session_start();
 
-    $course_num = $_SESSION['selected_course_number'];
+    $course_num = $_POST['course-number'];
     $announcement_content = $_POST['announcement-content'];
 
     if (isset($_POST['add-announcement'])) {

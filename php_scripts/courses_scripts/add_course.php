@@ -16,7 +16,6 @@
                 $course_num = $row["Recent_Course"];
             }
         }
-
         sql("INSERT INTO assigned_courses VALUES ('$id', '$course_num')");
         sql("INSERT INTO grading_system_main VALUES ('$course_num', $assignments, $quizzes)");
     }

@@ -1,8 +1,6 @@
 <?php
     include('php_scripts/connect.php');
     session_start();
-
-    $destination = $_SESSION["role"] == "Student" ? "student/student_announcements.php" : "teacher/teacher_announcements.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +56,9 @@
             <div class="p-3"> 
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                     <ul class="navbar-nav flex-column">
+                        <?php
+                            $destination = $_SESSION["role"] == "Student" ? "student/student_announcements.php" : "teacher/teacher_announcements.php";
+                        ?>
                         <li class="nav-item"><a href="courses/<?php echo $destination ?>" class="nav-link">Courses</a></li>
                         <li class="nav-item"><a href="calendar.php" class="nav-link active">Calendar</a></li>
                         <li class="nav-item"><a href="settings.php" class="nav-link">Settings</a></li>

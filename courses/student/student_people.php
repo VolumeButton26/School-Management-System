@@ -1,6 +1,13 @@
 <?php
     include('../../php_scripts/connect.php');
     session_start();
+
+    if (isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
+    else {
+        header("Location: ../../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,54 +22,10 @@
     
     <body>
         <!-- Main Sidebar -->
-        <div class="bg-dark main-sidebar">
-            <div class="bg-secondary text-center text-white">
-                <img src="../../images/avatarSample.png" class="mt-5 rounded-circle" alt="avatar">
-                <h3 class="my-3"><?php echo $_SESSION['first_name'] . " " . $_SESSION['family_name']?></h3>
-                <a href="../../index.php" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
-            </div>
-            <div class="p-3"> 
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="student_announcements.php" class="nav-link active">Courses</a></li>
-                        <li class="nav-item"><a href="../../calendar.php" class="nav-link">Calendar</a></li>
-                        <li class="nav-item"><a href="../../settings.php" class="nav-link">Settings</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php include('../courses_main_sidebar.php'); ?>
 
         <!-- Courses Sub Sidebar -->
-        <div class="bg-white border-right sub-sidebar">
-            <div class="container pt-3 px-4">
-                <!-- php script -->
-                <h3 class="text-dark">Courses</h3>
-                <div class="card">
-                    <div class="card-header bg-dark">
-                        <a class="card-link text-light" data-toggle="collapse" href="#courseDropdownMenu">Advanced Physics</a>
-                    </div>
-                    <div id="courseDropdownMenu" class="collapse">
-                        <div class="card-body bg-secondary">
-                            <a href="#" class="card-link text-light">Inverse Kinematics</a>
-                            <hr/>
-                            <a href="#" class="card-link text-light">Biochemistry</a>
-                            <hr/>
-                            <a href="#" class="card-link text-light">Anthropology</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="px-1 pb-1"> 
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="student_announcements.php" class="nav-link">Announcements</a></li>
-                        <li class="nav-item"><a href="student_modules.php" class="nav-link">Modules</a></li>
-                        <li class="nav-item"><a href="student_people.php" class="nav-link active">People</a></li>
-                        <li class="nav-item"><a href="student_grades.php" class="nav-link">Grades</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php include('../courses_sub_sidebar_student.php'); ?>
 
         <!-- Content -->
         <main>
@@ -71,42 +34,79 @@
                 <hr/>
 
                 <div id="content">
-                    <!-- get content from database -->
-                    <a href="#student-list" class="btn btn-dark mx-auto mb-4" data-toggle="collapse" role="button"><h5 class="mb-1">Students</h5></a>
-                    <a href="#group-list" class="btn btn-dark mx-auto mb-4" data-toggle="collapse" role="button"><h5 class="mb-1">Groups</h5></a>
+                    <a href="#student-list" class="btn btn-dark mx-auto" data-toggle="collapse" role="button"><h5 class="mb-1">Students</h5></a>
+                    <a href="#group-list" class="btn btn-dark mx-auto" data-toggle="collapse" role="button"><h5 class="mb-1">Group</h5></a>
 
                     <div id="accordion">
                         <div class="collapse show" id="student-list" data-parent="#accordion">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Student One</li>
-                                <li class="list-group-item">Student Two</li>
-                                <li class="list-group-item">Student Three</li>
-                                <li class="list-group-item">Student Four</li>
-                            </ul>
+                            <?php
+                                $course_number = $_GET['course'];
+                                $get_course_name = "SELECT Course_name FROM courses WHERE Course_number = $course_number";
+                                $result = sql($get_course_name);
+                                if ($result->num_rows == 1) {
+                                    $row = $result->fetch_assoc();
+                                    $course_name = $row["Course_name"];
+                                }
+                            ?>
+                            <hr>
+                            <div class="list-group list-group-flush">
+                                <?php
+                                    $classlist = sql("SELECT ID_number FROM assigned_courses WHERE Course_number = $course_number");
+                                    if ($classlist->num_rows > 0) {
+                                        while ($row = $classlist->fetch_assoc()) {
+                                            $id_number = $row["ID_number"];
+                                            $student = sql("SELECT ID_number, Family_name, First_name, Middle_name FROM student_information WHERE ID_number = '$id_number'");
+                                            if ($student->num_rows == 1) {
+                                                $student_row = $student->fetch_assoc();
+                                                echo "<a href=\"#\" class=\"list-group-item list-group-item-action\">" . $student_row["First_name"] . " " . $student_row["Middle_name"] . " " . $student_row["Family_name"] . "</a>";
+                                            }
+                                        }
+                                    }
+                                ?>
+                            </div>
+                            <hr>
                         </div>
+
                         <div class="collapse" id="group-list" data-parent="#accordion">
-                            <div class="card">
-                                <div class="card-header bg-secondary">
-                                    <a href="#group-1" class="card-link text-light" data-toggle="collapse">Group One</a>
-                                </div>
-                                <div class="card-body collapse" id="group-1">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Student One</li>
-                                        <li class="list-group-item">Student Two</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header bg-secondary">
-                                    <a href="#group-2" class="card-link text-light" data-toggle="collapse">Group Two</a>
-                                </div>
-                                <div class="card-body collapse" id="group-2">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Student Three</li>
-                                        <li class="list-group-item">Student Four</li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <hr>
+                            <?php
+                                $groups = sql("SELECT Group_ID, Group_name, Group_number FROM groups WHERE Course_number = $course_number ORDER BY Group_ID");
+                                if ($groups->num_rows > 0) {
+                                    $link_count = 1;
+                                    while ($row = $groups->fetch_assoc()) {
+                                        echo "
+                                            <div class=\"card mb-2\">
+                                                <div class=\"card-header bg-secondary\">
+                                                    <a href=\"#group-" . $link_count . "\" class=\"card-link text-light\" data-toggle=\"collapse\">" . $row["Group_name"] . " - " . $row["Group_number"] . "</a>
+                                                </div>
+                                                <div class=\"collapse\" id=\"group-" . $link_count . "\">
+                                                    <div class=\"card-body\">
+                                                        <ul class=\"list-group list-group-flush\">";
+
+                                        $group_id = $row["Group_ID"];
+                                        $students = sql("SELECT ID_number FROM student_groups WHERE Group_ID = $group_id");
+                                        if ($students->num_rows > 0) {
+                                            while ($student_row = $students->fetch_assoc()) {
+                                                $student_id = $student_row["ID_number"];
+                                                $student = sql("SELECT First_name, Family_name FROM student_information WHERE ID_number = '$student_id'");
+                                                if ($student->num_rows == 1) {
+                                                    $student_data = $student->fetch_assoc();
+                                                    echo "<li class=\"list-group-item\">" . $student_data["First_name"] . " " . $student_data["Family_name"] . "</li>";
+                                                }
+                                            }
+                                        }
+
+                                        echo "
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ";
+                                        $link_count++;
+                                    }
+                                }
+                            ?>
+                            <hr>
                         </div>
                     </div>
                 </div>

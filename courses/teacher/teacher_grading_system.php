@@ -2,7 +2,12 @@
     include('../../php_scripts/connect.php');
     session_start();
 
-    $id = $_SESSION['id'];
+    if (isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
+    else {
+        header("Location: ../../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +22,7 @@
     
     <body>
         <!-- Main Sidebar -->
-        <?php include('../../main_sidebar.php'); ?>
+        <?php include('../courses_main_sidebar.php'); ?>
 
         <!-- Courses Sub Sidebar -->
         <?php include('../courses_sub_sidebar_teacher.php'); ?>
@@ -29,7 +34,7 @@
 
                 <div id="content">
                     <?php
-                        $course_number = $_SESSION['selected_course_number'];
+                        $course_number = $_GET["course"];
                         if ($course_number != null) {
                             $course = sql("SELECT * FROM grading_system_main WHERE Course_number = $course_number");
                         
@@ -59,7 +64,7 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
-                                <form action="../../php_scripts/courses_scripts/edit_grading_system.php" method="post">
+                                <form action="../../php_scripts/courses_scripts/edit_grading_system.php?course=<?php echo $_GET['course'];?>" method="post">
                                     <div class="modal-body" id="edit-grading-system-form">
                                         <div class="form-group">
                                             <label for="assignments-distribution">Assignments</label>

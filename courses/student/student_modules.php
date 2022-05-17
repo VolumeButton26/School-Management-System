@@ -1,6 +1,13 @@
 <?php
     include('../../php_scripts/connect.php');
     session_start();
+
+    if (isset($_SESSION['id'])) {
+        $id = $_SESSION['id'];
+    }
+    else {
+        header("Location: ../../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,54 +22,10 @@
     
     <body>
         <!-- Main Sidebar -->
-        <div class="bg-dark main-sidebar">
-            <div class="bg-secondary text-center text-white">
-                <img src="../../images/avatarSample.png" class="mt-5 rounded-circle" alt="avatar">
-                <h3 class="my-3"><?php echo $_SESSION['first_name'] . " " . $_SESSION['family_name']?></h3>
-                <a href="../../index.php" class="btn btn-dark mx-auto mb-4" role="button">LOGOUT</a>
-            </div>
-            <div class="p-3"> 
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="student_announcements.php" class="nav-link active">Courses</a></li>
-                        <li class="nav-item"><a href="../../calendar.php" class="nav-link">Calendar</a></li>
-                        <li class="nav-item"><a href="../../settings.php" class="nav-link">Settings</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php include('../courses_main_sidebar.php'); ?>
 
         <!-- Courses Sub Sidebar -->
-        <div class="bg-white border-right sub-sidebar">
-            <div class="container pt-3 px-4">
-                <!-- php script -->
-                <h3 class="text-dark">Courses</h3>
-                <div class="card">
-                    <div class="card-header bg-dark">
-                        <a class="card-link text-light" data-toggle="collapse" href="#courseDropdownMenu">Advanced Physics</a>
-                    </div>
-                    <div id="courseDropdownMenu" class="collapse">
-                        <div class="card-body bg-secondary">
-                            <a href="#" class="card-link text-light">Inverse Kinematics</a>
-                            <hr/>
-                            <a href="#" class="card-link text-light">Biochemistry</a>
-                            <hr/>
-                            <a href="#" class="card-link text-light">Anthropology</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="px-1 pb-1"> 
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <ul class="navbar-nav flex-column">
-                        <li class="nav-item"><a href="student_announcements.php" class="nav-link">Announcements</a></li>
-                        <li class="nav-item"><a href="student_modules.php" class="nav-link active">Modules</a></li>
-                        <li class="nav-item"><a href="student_people.php" class="nav-link">People</a></li>
-                        <li class="nav-item"><a href="student_grades.php" class="nav-link">Grades</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php include('../courses_sub_sidebar_student.php'); ?>
 
         <!-- Content -->
         <main>
