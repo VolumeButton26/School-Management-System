@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2022 at 04:52 PM
+-- Generation Time: May 17, 2022 at 11:08 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -43,7 +43,21 @@ INSERT INTO `announcements` (`announcement_reference_number`, `Course_number`, `
 (2, 1, '2022-05-02 22:38:38', 'There is no class because eidl fitr'),
 (3, 2, '2022-05-02 22:39:01', 'practice physics simulations for tomorrow'),
 (4, 1, '2022-05-02 22:48:51', 'test annoucnement yahow'),
-(5, 2, '2022-05-02 22:49:20', 'lezgoooo');
+(5, 2, '2022-05-02 22:49:20', 'lezgoooo'),
+(6, 2, '2022-05-07 19:07:56', 'no class tomorrow because sunday'),
+(7, 3, '2022-05-09 06:35:58', 'krazy'),
+(8, 4, '2022-05-09 06:36:20', 'tomorrow will be neural networks'),
+(9, 5, '2022-05-09 06:36:33', 'we will be talking about natural language next week'),
+(10, 6, '2022-05-09 21:18:47', 'lets go krazy with pym particles'),
+(11, 2, '2022-05-09 22:18:40', 'balda'),
+(12, 7, '2022-05-10 20:15:54', 'bones go brrrt'),
+(13, 2, '2022-05-10 20:29:06', 'make 3d model'),
+(14, 2, '2022-05-10 20:29:11', 'do a flip'),
+(15, 2, '2022-05-10 20:29:15', 'deadline on monday'),
+(16, 2, '2022-05-10 20:29:21', 'take a break for next week'),
+(17, 2, '2022-05-10 20:29:25', 'make a platformer game'),
+(18, 2, '2022-05-10 20:29:31', 'do your best'),
+(19, 2, '2022-05-11 22:16:20', 'face to face class next school year lets go');
 
 -- --------------------------------------------------------
 
@@ -61,8 +75,20 @@ CREATE TABLE `assigned_courses` (
 --
 
 INSERT INTO `assigned_courses` (`ID_number`, `Course_number`) VALUES
+('s1000', 2),
+('s1000', 3),
+('s1000', 6),
+('s1001', 6),
+('s1002', 2),
+('s1002', 6),
+('s1003', 6),
+('s1003', 7),
 ('t1000', 2),
-('t1001', 1);
+('t1000', 3),
+('t1000', 7),
+('t1001', 4),
+('t1001', 5),
+('t1002', 6);
 
 -- --------------------------------------------------------
 
@@ -80,8 +106,13 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`Course_number`, `Course_name`) VALUES
+(4, 'AI Development'),
+(3, 'Applied Math for Games'),
 (2, 'Game Programming'),
-(1, 'Machine Learning');
+(7, 'Inverse Kinematics'),
+(1, 'Machine Learning'),
+(5, 'Natural Language Processing'),
+(6, 'Particle Systems');
 
 -- --------------------------------------------------------
 
@@ -114,7 +145,12 @@ CREATE TABLE `grading_system_main` (
 
 INSERT INTO `grading_system_main` (`Course_number`, `Assignments_percentage`, `Quizzes_percentage`) VALUES
 (1, 60, 40),
-(2, 80, 20);
+(2, 50, 50),
+(3, 70, 30),
+(4, 80, 20),
+(5, 60, 40),
+(6, 50, 50),
+(7, 60, 40);
 
 -- --------------------------------------------------------
 
@@ -128,6 +164,23 @@ CREATE TABLE `groups` (
   `Group_name` varchar(50) NOT NULL,
   `Group_number` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`Group_ID`, `Course_number`, `Group_name`, `Group_number`) VALUES
+(15, 3, 'Exam', 1),
+(16, 3, 'MLE', 1),
+(17, 3, 'MLE', 2),
+(18, 3, 'MLE', 3),
+(19, 3, 'Project', 1),
+(20, 3, 'Project', 2),
+(21, 3, 'Project', 3),
+(22, 2, 'Capstone', 1),
+(23, 2, 'Capstone', 2),
+(24, 2, 'Capstone', 3),
+(25, 2, 'Capstone', 4);
 
 -- --------------------------------------------------------
 
@@ -151,7 +204,8 @@ INSERT INTO `login_information` (`ID_number`, `Password`, `Role`) VALUES
 ('s1002', 'abc', 'Student'),
 ('s1003', 'asd', 'Student'),
 ('t1000', 'def', 'Teacher'),
-('t1001', 'qwe', 'Teacher');
+('t1001', 'qwe', 'Teacher'),
+('t1002', 'asd', 'Teacher');
 
 -- --------------------------------------------------------
 
@@ -270,6 +324,16 @@ CREATE TABLE `student_groups` (
   `Group_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `student_groups`
+--
+
+INSERT INTO `student_groups` (`ID_number`, `Group_ID`) VALUES
+('s1000', 15),
+('s1000', 16),
+('s1000', 22),
+('s1002', 22);
+
 -- --------------------------------------------------------
 
 --
@@ -372,7 +436,8 @@ CREATE TABLE `teacher_information` (
 
 INSERT INTO `teacher_information` (`ID_number`, `Family_name`, `First_name`, `Middle_name`) VALUES
 ('t1000', 'Stark', 'Howard', 'Jarvis'),
-('t1001', 'Carter', 'Peggy', 'Linds');
+('t1001', 'Carter', 'Peggy', 'Linds'),
+('t1002', 'Pym', 'Hank', 'Claude');
 
 --
 -- Indexes for dumped tables
@@ -519,13 +584,13 @@ ALTER TABLE `teacher_information`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `announcement_reference_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `announcement_reference_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `Course_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Course_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `grading_system_additional`
@@ -537,7 +602,7 @@ ALTER TABLE `grading_system_additional`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `Group_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Group_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `modules_main`
