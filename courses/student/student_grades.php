@@ -105,30 +105,6 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <hr>
-                    <h3>Additional</h3>
-                    <table class="table table-sm">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th style="width:80%">Name</th>
-                                <th style="width:10%">Score</th>
-                                <th style="width:10%">Out Of</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Name</td>
-                                <td>50</td>
-                                <td>50</td>
-                            </tr>
-                            <tr>
-                                <th>Total</th>
-                                <td>50</td>
-                                <td>50</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </main>

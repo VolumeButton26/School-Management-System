@@ -36,7 +36,7 @@
                     <?php
                         $course_number = $_GET["course"];
                         if ($course_number != null) {
-                            $course = sql("SELECT * FROM grading_system_main WHERE Course_number = $course_number");
+                            $course = sql("SELECT * FROM grading_system WHERE Course_number = $course_number");
                         
                             if ($course->num_rows == 1) {
                                 $row = $course->fetch_assoc();

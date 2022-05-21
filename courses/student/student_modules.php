@@ -34,24 +34,59 @@
                 <hr/>
 
                 <div id="content">
-                    <!-- get content from database -->
-                    <div class="card">
-                        <div class="card-header bg-dark">
-                            <a class="card-link text-light collapse-link" data-toggle="collapse" href="#moduleOne">
-                            <img class="card-img-top collapse-icon" src="../../icons/collapse_button.png">
-                            Module 1: Basic Physics
-                            </a>
-                        </div>
-                        <div id="moduleOne" class="collapse">
-                            <div class="card-body bg-secondary">
-                            <a class="card-link text-light" href="#">1.1</a>
-                            <hr/>
-                            <a class="card-link text-light" href="#">1.2</a>
-                            <hr/>
-                            <a class="card-link text-light" href="#">1.3</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        $course_num = $_GET['course'];
+                        $course_modules_header = sql("SELECT * FROM modules_main WHERE Course_number = $course_num AND Module_type = 'Header' ORDER BY Module_number");
+                        if ($course_modules_header->num_rows > 0) {
+                            while ($row_header = $course_modules_header->fetch_assoc()) {
+                                echo "
+                                    <div class=\"card mb-3\">
+                                        <div class=\"card-header bg-dark\">
+                                            <a class=\"card-link text-light collapse-link\" data-toggle=\"collapse\" href=\"#module-" . $row_header["Module_number"] . "\">
+                                            <img class=\"card-img-top collapse-icon\" src=\"../../icons/collapse_button.png\">
+                                            Module " . $row_header["Module_number"] . ": " . $row_header["Module_name"] . "</a>
+                                        </div>
+                                        <div id=\"module-" . $row_header["Module_number"] . "\" class=\"collapse show\">
+                                            <div class=\"card-body bg-secondary\">
+                                ";
+
+                                $module_num = $row_header["Module_number"];
+                                $modules_non_header = sql("SELECT * FROM modules_main WHERE Course_number = $course_num AND NOT Module_type = 'Header' AND Module_number LIKE '$module_num%' ORDER BY Module_number");
+                                if ($modules_non_header->num_rows > 0) {
+                                    $first = true;
+                                    while ($non_header_row = $modules_non_header->fetch_assoc()) {
+                                        if (!$non_header_row["Published"]) {
+                                            continue;
+                                        }
+                                        if (!$first) {
+                                            echo "<hr>";
+                                        }
+                                        echo "<a class=\"card-link text-light\" href=\"student_module_";
+                                        switch ($non_header_row["Module_type"]) {
+                                            case "Lesson":
+                                                echo "lesson";
+                                                break;
+                                            case "Assignment":
+                                                echo "assignment";
+                                                break;
+                                            case "Quiz":
+                                                echo "quiz";
+                                                break;
+                                            default:
+                                                echo "Error: Module has an invalid type.";
+                                        }
+                                        echo ".php?course=" . $course_num . "&module_id=" . $non_header_row["Module_ID"] . "\">" . $non_header_row["Module_number"] . " - " . $non_header_row["Module_name"] . "</a>";
+                                        $first = false;
+                                    }
+                                } 
+                                echo "
+                                            </div>
+                                        </div>
+                                    </div>
+                                ";
+                            }
+                        }
+                    ?>
                 </div>
             </div>
         </main>

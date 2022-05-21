@@ -28,7 +28,7 @@
                             $destination = $_SESSION["role"] == "Student" ? "student/student_announcements.php" : "teacher/teacher_announcements.php";
                         ?>
                         <li class="nav-item"><a href="courses/<?php echo $destination ?>" class="nav-link">Courses</a></li>
-                        <li class="nav-item"><a href="calendar.php" class="nav-link">Calendar</a></li>
+                        <!-- <li class="nav-item"><a href="calendar.php" class="nav-link">Calendar</a></li> -->
                         <li class="nav-item"><a href="settings.php" class="nav-link active">Settings</a></li>
                     </ul>
                 </nav>

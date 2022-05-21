@@ -8,7 +8,7 @@
     $course_num = $_GET['course'];;
 
     if (isset($_POST['edit-grading-system'])) {
-        sql("UPDATE grading_system_main SET Assignments_percentage = $assignments, Quizzes_percentage = $quizzes WHERE Course_number = $course_num");
+        sql("UPDATE grading_system SET Assignments_percentage = $assignments, Quizzes_percentage = $quizzes WHERE Course_number = $course_num");
     }
 
     if(isset($_REQUEST["destination"])){
