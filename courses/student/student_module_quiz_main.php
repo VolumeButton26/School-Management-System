@@ -42,48 +42,55 @@
                 <hr>
 
                 <?php
-                    $assignment_query = sql("SELECT Content, Points, Due_date, No_of_submissions, Answer FROM modules_assignments WHERE Module_ID = $module_id");
-                    if ($assignment_query->num_rows == 1) {
-                        $assignment = $assignment_query->fetch_assoc();
+                    $quiz_query = sql("SELECT Content, Points, Start_date, Due_date, No_of_tries FROM modules_quizzes_main WHERE Module_ID = $module_id");
+                    if ($quiz_query->num_rows == 1) {
+                        $quiz = $quiz_query->fetch_assoc();
                     }
 
-                    $submission_query = sql("SELECT Score, Submission_date, No_of_submissions, Student_answer FROM student_modules_assignments WHERE ID_number = '$id' AND Module_ID = $module_id");
-                    if ($submission_query->num_rows > 0) {
-                        $submission = $submission_query->fetch_assoc();
-                        $submitted = true;
-                        $submissions_left = $assignment['No_of_submissions'] - $submission['No_of_submissions'];
+                    $try_query = sql("SELECT Score, Submission_date, No_of_tries FROM student_modules_quizzes WHERE ID_number = '$id' AND Module_ID = $module_id");
+                    if ($try_query->num_rows > 0) {
+                        $try = $try_query->fetch_assoc();
+                        $tried = true;
+                        $tries_left = $quiz['No_of_tries'] - $try['No_of_tries'];
                     }
                     else {
-                        $submitted = false;
-                        $submissions_left = $assignment['No_of_submissions'];
+                        $tried = false;
+                        $tries_left = $quiz['No_of_tries'];
                     }
                 ?>
 
                 <div id="content-main">
-                    <h4 class="text-secondary">Due Date: <span class="text-dark"><?php echo date('M d, Y, h:i A', strtotime($assignment["Due_date"]));?></span></h4>
+                    <h4 class="text-secondary">Date and Time: <span class="text-dark"><?php echo date('M d, Y, h:i A', strtotime($quiz["Start_date"])) . " - " . date('M d, Y, h:i A', strtotime($quiz["Due_date"]));?></span></h4>
                     <h4 class="text-secondary">Score: <span class="text-dark">
                     <?php 
-                        if ($submitted) {
-                            echo $submission["Score"];
+                        if ($tried) {
+                            echo $try["Score"];
                         }
                         else {
                             echo "__";
                         }
-                        echo " / " . $assignment["Points"];
+                        echo " / " . $quiz["Points"];
                     ?>
                     </span></h4>
-                    <h4 class="text-secondary">No. of Submissions Left: <span class="text-dark"><?php echo $submissions_left;?></span></h4>
+                    <h4 class="text-secondary">No. of Tries Left: <span class="text-dark"><?php echo $tries_left;?></span></h4>
                     <hr>
                     <h4 class="text-secondary mt-4">Content:</h4>
-                    <p><?php echo $assignment["Content"];?></p>
+                    <p><?php echo $quiz["Content"];?></p>
                     <hr>
-                    <h4 class="text-secondary mt-4">Answer:</h4>
-                    <form method="post" action="../../php_scripts/courses_scripts/modules/submit_assignment.php?course=<?php echo $_GET['course'] . "&module_id=" . $_GET['module_id'] ?>">
-                        <div class="form-group">
-                            <textarea name="student-answer" class="form-control" rows="5" required <?php if ($submissions_left == 0) {echo "disabled";} ?>></textarea>
-                        </div>
-                        <button type="submit" name="submit-assignment-button" value="Submit" class="btn btn-dark" <?php if ($submissions_left == 0) {echo "disabled";} ?>>Submit</button>
-                    </form>
+                    <?php 
+                        $can_take = false;
+                        if (date('M d, Y, h:i A', strtotime($quiz["Start_date"])) < date('M d, Y, h:i A') && date('M d, Y, h:i A') < date('M d, Y, h:i A', strtotime($quiz["Due_date"])) && $tries_left != 0) {
+                            $can_take = true;
+                        }
+
+                        if ($can_take) {
+                            echo "<a href=\"student_module_quiz_answer_sheet.php?course=" . $_GET['course'] . "&module_id=" . $_GET['module_id'] . "\" class=\"btn btn-dark\" role=\"button\">Start Quiz</a>";
+                        }
+                        else {
+                            echo "<button class=\"btn btn-dark\" disabled>Start Quiz</button>";
+                        }
+                    ?>
+                    <br>
                 </div>
             </div>
         </main>

@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set("Asia/Manila");
     include('../../php_scripts/connect.php');
     session_start();
 
@@ -47,7 +48,9 @@
                     }
                 ?>
                 <br>
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#edit-module-modal">Edit Assignment</button>
+                <button type="button" class="btn btn-dark mb-2" data-toggle="modal" data-target="#edit-module-modal">Edit Assignment</button>
+                <br>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#assignment-submissions-modal">Submissions</button>
                 <hr>
 
                 <div class="modal fade" id="publish-module-modal">
@@ -133,6 +136,57 @@
                                     <button type="submit" name="edit-module-button" value="Submit" class="btn btn-dark">Submit</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="assignment-submissions-modal">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Submissions</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>ID_number</th>
+                                            <th>Name</th>
+                                            <th>Submitted on</th>
+                                            <th>Score</th>
+                                            <th>Answer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $submissions_query = sql("SELECT ID_number, Score, Submission_date, Student_answer FROM student_modules_assignments WHERE Module_ID = $module_id");
+                                            if ($submissions_query->num_rows > 0) {
+                                                while ($sub_row = $submissions_query->fetch_assoc()) {
+                                                    $student_id = $sub_row["ID_number"];
+                                                    $name_query = sql("SELECT First_name, Family_name FROM student_information WHERE ID_number = '$student_id'");
+                                                    
+                                                    if ($name_query->num_rows == 1) {
+                                                        $name_row = $name_query->fetch_assoc();
+                                                        
+                                                        
+                                                        echo "
+                                                            <tr>
+                                                                <td>" . $student_id . "</td>
+                                                                <td>" . $name_row["Family_name"] . ", " . $name_row["First_name"] . "</td>
+                                                                <td>" . date('M d, Y, h:i A', strtotime($sub_row["Submission_date"])) . "</td>
+                                                                <td>" . $sub_row["Score"] . "</td>
+                                                                <td>" . $sub_row["Student_answer"] . "</td>
+                                                            </tr>
+                                                        ";
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set("Asia/Manila");
     include('../../php_scripts/connect.php');
     session_start();
 
@@ -47,32 +48,56 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.1</td>
-                                <td>Apr 30, 2022 by 11:59 PM</td>
-                                <td>Submitted</td>
-                                <td>50</td>
-                                <td>50</td>
-                            </tr>
-                            <tr>
-                                <td>1.2</td>
-                                <td>Apr 27, 2022 by 11:59 PM</td>
-                                <td>Late</td>
-                                <td>40</td>
-                                <td>50</td>
-                            </tr>
-                            <tr>
-                                <td>1.3</td>
-                                <td>Apr 27, 2022 by 11:59 PM</td>
-                                <td>Not Submitted</td>
-                                <td>0</td>
-                                <td>50</td>
-                            </tr>
+                            <?php
+                                $course_num = $_GET['course'];
+                                $student_total_assignment_score = 0;
+                                $total_assignment_score = 0;
+
+                                $main_query = sql("SELECT Module_ID, Module_number, Module_name FROM modules_main WHERE Course_number = $course_num AND Module_type = 'Assignment' ORDER BY Module_number");
+                                if ($main_query->num_rows > 0) {
+                                    while ($main_row = $main_query->fetch_assoc()) {
+                                        $module_id = $main_row["Module_ID"];
+                                        $assignments_query = sql("SELECT Points, Due_date FROM modules_assignments WHERE Module_ID = $module_id");
+                                        if ($assignments_query->num_rows == 1) {
+                                            $assignments_row = $assignments_query->fetch_assoc();
+                                            
+                                            $submission_query = sql("SELECT Status, Score FROM student_modules_assignments WHERE ID_number = '$id' AND Module_ID = $module_id");
+                                            if ($submission_query->num_rows == 1) {
+                                                $submission_row = $submission_query->fetch_assoc();
+
+                                                echo "
+                                                    <tr>
+                                                        <td>" . $main_row["Module_number"] . " - " . $main_row["Module_name"] . "</td>
+                                                        <td>" . date('M d, Y b\y h:i A', strtotime($assignments_row["Due_date"])) . "</td>
+                                                        <td>" . $submission_row["Status"] . "</td>
+                                                        <td>" . $submission_row["Score"] . "</td>
+                                                        <td>" . $assignments_row["Points"] . "</td>
+                                                    </tr>
+                                                ";
+
+                                                $student_total_assignment_score += $submission_row["Score"];
+                                            }
+                                            else {
+                                                echo "
+                                                    <tr>
+                                                        <td>" . $main_row["Module_number"] . " - " . $main_row["Module_name"] . "</td>
+                                                        <td>" . date('M d, Y b\y h:i A', strtotime($assignments_row["Due_date"])) . "</td>
+                                                        <td>Not Submitted</td>
+                                                        <td>0</td>
+                                                        <td>" . $assignments_row["Points"] . "</td>
+                                                    </tr>
+                                                ";
+                                            }
+                                            $total_assignment_score += $assignments_row["Points"];
+                                        }
+                                    }
+                                }
+                            ?>
 
                             <tr>
                                 <th colspan="3">Total</th>
-                                <td>90</td>
-                                <td>150</td>
+                                <td><?php echo $student_total_assignment_score; ?></td>
+                                <td><?php echo $total_assignment_score; ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,18 +115,56 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.4</td>
-                                <td>May 2, 2022 by 11:59 PM</td>
-                                <td>Submitted</td>
-                                <td>50</td>
-                                <td>50</td>
-                            </tr>
+                            <?php
+                                $course_num = $_GET['course'];
+                                $student_total_quiz_score = 0;
+                                $total_quiz_score = 0;
+
+                                $main_query = sql("SELECT Module_ID, Module_number, Module_name FROM modules_main WHERE Course_number = $course_num AND Module_type = 'Quiz' ORDER BY Module_number");
+                                if ($main_query->num_rows > 0) {
+                                    while ($main_row = $main_query->fetch_assoc()) {
+                                        $module_id = $main_row["Module_ID"];
+                                        $quizzes_query = sql("SELECT Points, Due_date FROM modules_quizzes_main WHERE Module_ID = $module_id");
+                                        if ($quizzes_query->num_rows == 1) {
+                                            $quizzes_row = $quizzes_query->fetch_assoc();
+                                            
+                                            $quiz_submission_query = sql("SELECT Status, Score FROM student_modules_quizzes WHERE ID_number = '$id' AND Module_ID = $module_id");
+                                            if ($quiz_submission_query->num_rows == 1) {
+                                                $quiz_submission_row = $quiz_submission_query->fetch_assoc();
+
+                                                echo "
+                                                    <tr>
+                                                        <td>" . $main_row["Module_number"] . " - " . $main_row["Module_name"] . "</td>
+                                                        <td>" . date('M d, Y b\y h:i A', strtotime($quizzes_row["Due_date"])) . "</td>
+                                                        <td>" . $quiz_submission_row["Status"] . "</td>
+                                                        <td>" . $quiz_submission_row["Score"] . "</td>
+                                                        <td>" . $quizzes_row["Points"] . "</td>
+                                                    </tr>
+                                                ";
+
+                                                $student_total_quiz_score += $quiz_submission_row["Score"];
+                                            }
+                                            else {
+                                                echo "
+                                                    <tr>
+                                                        <td>" . $main_row["Module_number"] . " - " . $main_row["Module_name"] . "</td>
+                                                        <td>" . date('M d, Y b\y h:i A', strtotime($quizzes_row["Due_date"])) . "</td>
+                                                        <td>Not Submitted</td>
+                                                        <td>0</td>
+                                                        <td>" . $quizzes_row["Points"] . "</td>
+                                                    </tr>
+                                                ";
+                                            }
+                                            $total_quiz_score += $quizzes_row["Points"];
+                                        }
+                                    }
+                                }
+                            ?>
 
                             <tr>
                                 <th colspan="3">Total</th>
-                                <td>50</td>
-                                <td>50</td>
+                                <td><?php echo $student_total_quiz_score; ?></td>
+                                <td><?php echo $total_quiz_score; ?></td>
                             </tr>
                         </tbody>
                     </table>

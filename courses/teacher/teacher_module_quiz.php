@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set("Asia/Manila");
     include('../../php_scripts/connect.php');
     session_start();
 
@@ -47,7 +48,9 @@
                     }
                 ?>
                 <br>
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#edit-module-modal">Edit Quiz</button>
+                <button type="button" class="btn btn-dark mb-2" data-toggle="modal" data-target="#edit-module-modal">Edit Quiz</button>
+                <br>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#quiz-submissions-modal">Submissions</button>
                 <hr>
 
                 <div class="modal fade" id="publish-module-modal">
@@ -112,10 +115,6 @@
                                         <textarea name="module-content" class="form-control" rows="5" required><?php echo $quiz["Content"];?></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="points">Points</label>
-                                        <input type="number" class="form-control" name="points" value="<?php echo $quiz["Points"];?>" required>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="start-date">Start Date</label>
                                         <input type="datetime-local" class="form-control" name="start-date" value="<?php echo date('Y-m-d\TH:i:s', strtotime($quiz["Start_date"]));?>" required>
                                     </div>
@@ -133,6 +132,54 @@
                                     <button type="submit" name="edit-module-button" value="Submit" class="btn btn-dark">Submit</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="quiz-submissions-modal">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Submissions</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>ID_number</th>
+                                            <th>Name</th>
+                                            <th>Submitted on</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $submissions_query = sql("SELECT ID_number, Score, Submission_date FROM student_modules_quizzes WHERE Module_ID = $module_id");
+                                            if ($submissions_query->num_rows > 0) {
+                                                while ($sub_row = $submissions_query->fetch_assoc()) {
+                                                    $student_id = $sub_row["ID_number"];
+                                                    $name_query = sql("SELECT First_name, Family_name FROM student_information WHERE ID_number = '$student_id'");
+                                                    
+                                                    if ($name_query->num_rows == 1) {
+                                                        $name_row = $name_query->fetch_assoc();
+                                                        
+                                                        echo "
+                                                            <tr>
+                                                                <td>" . $student_id . "</td>
+                                                                <td>" . $name_row["Family_name"] . ", " . $name_row["First_name"] . "</td>
+                                                                <td>" . date('M d, Y, h:i A', strtotime($sub_row["Submission_date"])) . "</td>
+                                                                <td>" . $sub_row["Score"] . "</td>
+                                                            </tr>
+                                                        ";
+                                                        
+                                                    }
+                                                }
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

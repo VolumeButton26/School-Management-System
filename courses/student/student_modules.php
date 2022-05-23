@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set("Asia/Manila");
     include('../../php_scripts/connect.php');
     session_start();
 
@@ -70,7 +71,7 @@
                                                 echo "assignment";
                                                 break;
                                             case "Quiz":
-                                                echo "quiz";
+                                                echo "quiz_main";
                                                 break;
                                             default:
                                                 echo "Error: Module has an invalid type.";

@@ -17,7 +17,7 @@
             }
         }
         sql("INSERT INTO assigned_courses VALUES ('$id', '$course_num')");
-        sql("INSERT INTO grading_system_main VALUES ('$course_num', $assignments, $quizzes)");
+        sql("INSERT INTO grading_system VALUES ('$course_num', $assignments, $quizzes)");
     }
 
     if(isset($_REQUEST["destination"])){

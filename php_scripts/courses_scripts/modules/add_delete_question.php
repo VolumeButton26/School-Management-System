@@ -22,6 +22,14 @@
             sql("INSERT INTO modules_quizzes_choices (Question_ID, Choice) VALUES ($question_id, '$choice_c')");
             sql("INSERT INTO modules_quizzes_choices (Question_ID, Choice) VALUES ($question_id, '$choice_d')");
         }
+
+        $points_query = sql("SELECT Points FROM modules_quizzes_main WHERE Module_ID = $module_id");
+        if ($points_query->num_rows == 1) {
+            $points_row = $points_query->fetch_assoc();
+            $updated_points = $points_row["Points"];
+            $updated_points = $updated_points + 1;
+            sql("UPDATE modules_quizzes_main SET Points = $updated_points WHERE Module_ID = $module_id");
+        }
     }
 
     if (isset($_POST['delete-question-button'])) {
@@ -30,6 +38,14 @@
         if ($check_if_question_exists->num_rows == 1) {
             sql("DELETE FROM modules_quizzes_questions WHERE Question_ID = $question_id");
             sql("DELETE FROM modules_quizzes_choices WHERE Question_ID = $question_id");
+        }
+
+        $points_query = sql("SELECT Points FROM modules_quizzes_main WHERE Module_ID = $module_id");
+        if ($points_query->num_rows == 1) {
+            $points_row = $points_query->fetch_assoc();
+            $updated_points = $points_row["Points"];
+            $updated_points = $updated_points - 1;
+            sql("UPDATE modules_quizzes_main SET Points = $updated_points WHERE Module_ID = $module_id");
         }
     }
 

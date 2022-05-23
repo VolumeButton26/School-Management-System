@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set("Asia/Manila");
     include('../../php_scripts/connect.php');
     session_start();
 
@@ -104,7 +105,7 @@
                                             $student = sql("SELECT ID_number, Family_name, First_name, Middle_name FROM student_information WHERE ID_number = '$id_number'");
                                             if ($student->num_rows == 1) {
                                                 $student_row = $student->fetch_assoc();
-                                                echo "<a href=\"#\" class=\"list-group-item list-group-item-action\">" . $student_row["First_name"] . " " . $student_row["Middle_name"] . " " . $student_row["Family_name"] . "</a>";
+                                                echo "<a href=\"#\" class=\"list-group-item list-group-item-action\">" . $student_row["ID_number"] . " - " . $student_row["First_name"] . " " . $student_row["Middle_name"] . " " . $student_row["Family_name"] . "</a>";
                                             }
                                         }
                                     }

@@ -32,12 +32,11 @@
             if ($can_submit) {
                 if ($student_answer == $answer["Answer"]) {
                     $score = $answer["Points"];
-                    $submissions++;
                 }
                 else {
                     $score = 0;
-                    $submissions++;
                 }
+                $submissions++;
 
                 if ($submitted) {
                     sql("UPDATE student_modules_assignments SET Score = $score, Submission_date = '$submission_date', No_of_submissions = $submissions, Student_answer = '$student_answer' WHERE ID_number = '$student_id' AND Module_ID = $module_id");
