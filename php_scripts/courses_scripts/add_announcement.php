@@ -4,6 +4,7 @@
 
     $course_num = $_POST['course-number'];
     $announcement_content = $_POST['announcement-content'];
+    $announcement_content = addslashes($announcement_content);
 
     if (isset($_POST['add-announcement'])) {
         sql("INSERT INTO announcements (Course_number, Date_posted, Announcement_content) VALUES ($course_num, CURRENT_TIMESTAMP(), '$announcement_content')");

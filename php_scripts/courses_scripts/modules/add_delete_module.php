@@ -8,6 +8,7 @@
 
     if (isset($_POST['add-module-button'])) {
         $module_name = $_POST['module-name'];
+        $module_name = addslashes($module_name);
         $module_type = $_POST['module-type'];
         
         $check_if_module_exists = sql("SELECT Module_ID, Module_type FROM modules_main WHERE Course_number = $course_num AND Module_number = '$module_num'");

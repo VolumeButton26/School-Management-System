@@ -10,7 +10,6 @@
                   WHERE ID_number='$id' AND Password='$password'";
         $result = sql($login);
 
-        
         if ($result->num_rows == 1) {
             while ($row = $result->fetch_assoc()) {
                 session_start();

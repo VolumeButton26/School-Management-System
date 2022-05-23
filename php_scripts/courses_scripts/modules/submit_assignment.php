@@ -6,6 +6,7 @@
     $module_id = $_GET['module_id'];
     $submission_date = date("Y-m-d H:i:s");
     $student_answer = $_POST['student-answer'];
+    $student_answer = addslashes($student_answer);
     
 
     if (isset($_POST['submit-assignment-button'])) {

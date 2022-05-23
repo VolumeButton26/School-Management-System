@@ -4,6 +4,7 @@
 
     $module_id = $_GET['module_id'];
     $content = $_POST['module-content'];
+    $content = addslashes($content);
     $points = $_POST['points'];
     $start_date = strtotime($_POST['start-date']);
     $start_date_formatted = date("Y-m-d H:i:s", $start_date);

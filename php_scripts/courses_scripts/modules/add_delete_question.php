@@ -12,6 +12,13 @@
         $choice_c = $_POST['choice-C'];
         $choice_d = $_POST['choice-D'];
 
+        $question = addslashes($question);
+        $answer = addslashes($answer);
+        $choice_a = addslashes($choice_a);
+        $choice_b = addslashes($choice_b);
+        $choice_c = addslashes($choice_c);
+        $choice_d = addslashes($choice_d);
+
         sql("INSERT INTO modules_quizzes_questions (Module_ID, Question, Answer) VALUES ($module_id, '$question', '$answer')");
         $question_id_query = sql("SELECT Question_ID FROM modules_quizzes_questions WHERE Module_ID = $module_id AND Question = '$question' AND Answer = '$answer'");
         if ($question_id_query->num_rows == 1) {

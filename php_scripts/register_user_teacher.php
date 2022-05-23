@@ -8,6 +8,10 @@
     $first_name = $_POST['first-name'];
     $middle_name = $_POST['middle-name'];
 
+    $family_name = addslashes($family_name);
+    $first_name = addslashes($first_name);
+    $middle_name = addslashes($middle_name);
+
     if (isset($_POST['register'])) {
         sql("INSERT INTO login_information VALUES ('$id', '$password', '$role')");
         sql("INSERT INTO teacher_information VALUES('$id', '$family_name', '$first_name', '$middle_name')");

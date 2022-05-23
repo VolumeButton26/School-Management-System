@@ -12,6 +12,11 @@
     $program = $_POST['program'];
     $section = $_POST['section'];
 
+    $family_name = addslashes($family_name);
+    $first_name = addslashes($first_name);
+    $middle_name = addslashes($middle_name);
+    $program = addslashes($program);
+
     if (isset($_POST['register'])) {
         sql("INSERT INTO login_information VALUES ('$id', '$password', '$role')");
         sql("INSERT INTO student_information VALUES('$id', '$family_name', '$first_name', '$middle_name', '$sex', '$year', '$program', '$section')");

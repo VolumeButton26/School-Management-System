@@ -4,11 +4,13 @@
 
     $module_id = $_GET['module_id'];
     $content = $_POST['module-content'];
+    $content = addslashes($content);
     $points = $_POST['points'];
     $due_date = strtotime($_POST['due-date']);
     $due_date_formatted = date("Y-m-d H:i:s", $due_date);
     $no_of_submissions = $_POST['no-of-submissions'];
     $answer = $_POST['answer'];
+    $answer = addslashes($answer);
     
 
     if (isset($_POST['edit-module-button'])) {

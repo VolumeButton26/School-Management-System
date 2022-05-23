@@ -4,8 +4,8 @@
 
     $module_id = $_GET['module_id'];
     $content = $_POST['module-content'];
+    $content = addslashes($content);
     
-
     if (isset($_POST['edit-module-button'])) {
         sql("UPDATE modules_lessons SET Content = '$content' WHERE Module_ID = $module_id");
     }

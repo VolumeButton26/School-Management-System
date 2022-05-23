@@ -4,6 +4,7 @@
 
     $course_num = $_GET['course'];
     $group_name = $_POST['group-name'];
+    $group_name = addslashes($group_name);
     $group_num = $_POST['group-num'];
 
     if (isset($_POST['add-group-button'])) {

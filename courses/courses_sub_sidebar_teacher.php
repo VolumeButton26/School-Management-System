@@ -71,7 +71,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="course-name">Course Name</label>
-                        <input type="text" name="course-name" class="form-control mb-2" onkeyup="showAvailability(this.value)" required>
+                        <input type="text" name="course-name" class="form-control mb-2" required>
                         <p id="course-availability-message" class="text-danger"></p>
                     </div>
                     <h6 id="test">Grading System</h6>
@@ -145,30 +145,5 @@
             sum += parseInt(input.value);
         }
         return sum;
-    }
-
-    // NOT WORKING, NEED TO DEBUG
-    function showAvailability(str) {
-        if (str.length == 0) {
-            document.getElementById("course-availability-message").innerHTML = "";
-            return;
-        } 
-        else {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var msg = document.getElementById("course-availability-message");
-                    msg.innerHTML = this.responseText;
-                    if (msg.innerText == "" || msg.innerText == null) {
-                        document.getElementById('add-course').disabled = false;
-                    }
-                    else {
-                        document.getElementById('add-course').disabled = true;
-                    }
-                }
-            };
-            xmlhttp.open("GET", "../php_scripts/courses_scripts/course_availability_check.php?name=" + str, true);
-            xmlhttp.send();
-        }
     }
 </script>
